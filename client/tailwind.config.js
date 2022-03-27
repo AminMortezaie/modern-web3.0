@@ -10,6 +10,9 @@ module.exports = {
     extend: {
       colors: {
         'regal-blue': 'hsla(339,49%,60%,1)',
+        'start-color':'hsla(339,49%,30%,1)',
+        'edited-black':'#161A1D',
+        'edited-red':'#660708'
       },
       screens: {
         mf: "990px",
