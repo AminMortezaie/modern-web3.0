@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { TransactionContext } from '../context/TransactionContext';
+import {Loader} from "./"
 
 import dummyData from '../utils/dummyData';
 import { shortenAddress } from '../utils/shortenAddress';
@@ -43,12 +44,11 @@ const TransactionCard = ({addressTo, addressFrom, timestamp, message, keyword, a
                     </div>
             </div>
         </div>
-        )
-
+    )
 }
 
 const Transactions = ()=>{
-    const {currentAccount, transactions } = useContext(TransactionContext);
+    const {currentAccount, transactions} = useContext(TransactionContext);
 
     return (
        <div className='flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions'>
@@ -59,9 +59,12 @@ const Transactions = ()=>{
                 <h3 className='text-white text-3xl text-center my-2'> Connect your account to see the Latest Transactions </h3>
                )}
                <div className='flex flex-wrap justify-center items-center mt-10'>
-                   {[...transactions].reverse().map((transaction, i)=>(
-                       <TransactionCard key={i} {...transaction} />
-                   ))}
+                   {transactions ? (
+                       [...transactions].reverse().map((transaction, i)=> (
+                        <TransactionCard key={i} {...transaction} />))
+                   ):(
+                    <Loader/>
+                    )}
                </div>
            </div>
        </div>
